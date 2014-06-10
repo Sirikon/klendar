@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>klendar</title>
+	<script type="text/javascript" src="bin/klendar.min.js"></script>
+	<link rel="stylesheet" href="bin/klendar.min.css" />
+	<style>
+		body {
+			background-color: whitesmoke;
+		}
+		div#mycalendar {
+			background-color: white;
+			width: 300px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="mycalendar" data-today="2014-06-10T10:11:12">
+		
+	</div>
+	<script>
+		new klendar( document.getElementById('mycalendar') );
+	</script>
+</body>
+</html>
