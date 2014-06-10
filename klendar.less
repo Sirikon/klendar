@@ -1,15 +1,34 @@
 *.klendar {
-	div.klendar-day-cell {
-		display: inline-block;
-		margin: 0px;
-		padding: 0px;
-		width: (100% / 7);
-		height: (100% / 8);
-		vertical-align: top;
+	table {
+		table-layout: fixed;
+		border-collapse: collapse;
+	}
+	table.klendar-month {
+		td {
+			text-align: center;
+		}
+	}
+	table.klendar-daychars {
 		text-align: center;
 	}
 	div.klendar-header {
-		height: (100% / 8);
 		text-align: center;
+		display: inline-block;
+		box-sizing: border-box;
+	}
+}
+
+*.klendar.klendar-scale {
+	table.klendar-month {
+		width: 100%;
+		height: ((100% / 32) * 22);
+	}
+	table.klendar-daychars {
+		width: 100%;
+		height: ((100% / 32)*4);
+	}
+	div.klendar-header {
+		height: ((100% / 32)*6);
+		width: 100%;
 	}
 }

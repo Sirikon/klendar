@@ -34,9 +34,14 @@ var klendar = function(element){
 	this.drawStruct = function(){
 		var header = document.createElement('div');
 		header.className = 'klendar-header';
-		var month = document.createElement('div');
+		var month = document.createElement('table');
 		month.className = 'klendar-month';
-		var daychars = document.createElement('div');
+		month.setAttribute('border',0);
+		month.setAttribute('cellspacing',0);
+		var daychars = document.createElement('table');
+		daychars.className = 'klendar-daychars';
+		daychars.setAttribute('border',0);
+		daychars.setAttribute('cellspacing',0);
 		this.element.innerHTML = '';
 		this.element.appendChild(header);
 		for(i=0;i<7;i++){
@@ -62,19 +67,36 @@ var klendar = function(element){
 			)
 		console.log(dayOne);
 		window.thedate = dayOne;
-		this.element.querySelector('div.klendar-month').innerHTML = '';
+		this.element.monthView.innerHTML = '';
 		this.element.headerView.innerText = klendarStatics.monthNames[d.getMonth()];
+
+		var cellList = [];
+
 		for(i=0;i< ((dayOne.getDate()+5)%7) ;i++){
-			this.element.monthView.appendChild(this.createDayCell(''));
+			cellList.push(this.createDayCell(''));
 		}
 		for(i=0;i<31;i++){
-			this.element.monthView.appendChild(this.createDayCell(i+1));
+			var newCell = this.createDayCell(i+1);
+			if((i+1) == d.getDate()){
+				newCell.className += ' today';
+			}
+			cellList.push(newCell);
+		}
+		var c = 0;
+		var row = document.createElement('tr');
+		for(i=0;i<cellList.length;i++){
+			if(c == 7){
+				this.element.monthView.appendChild(row);
+				row = document.createElement('tr');
+				c = 0;
+			}
+			row.appendChild(cellList[i]);
+			c++;
 		}
 	}
 
 	this.createDayCell = function(n){
-		var dc = document.createElement('div');
-		dc.className = 'klendar-day-cell';
+		var dc = document.createElement('td');
 		dc.innerText = n;
 		return dc;
 	}
