@@ -64,13 +64,13 @@ var klendar = function(element,daycontroller){
 		var headspan = document.createElement('span');
 		var btnLeft = document.createElement('button');
 		btnLeft.className = "klendar-prev";
-		btnLeft.innerText = '<';
+		btnLeft.textContent = '<';
 		btnLeft.addEventListener('click', function(){
 			anchor.prevMonth();
 		});
 		var btnRight = document.createElement('button');
 		btnRight.className = "klendar-next";
-		btnRight.innerText = '>';
+		btnRight.textContent = '>';
 		btnRight.addEventListener('click', function(){
 			anchor.nextMonth();
 		});
@@ -103,7 +103,7 @@ var klendar = function(element,daycontroller){
 			)
 		window.thedate = dayOne;
 		this.element.monthView.innerHTML = '';
-		this.element.headerView.innerText = klendarStatics.monthNames[d.getMonth()] + ' ' + year;
+		this.element.headerView.textContent = klendarStatics.monthNames[d.getMonth()] + ' ' + year;
 
 		var cellList = [];
 		for(i=0;i< ((dayOne.getDay()+6)%7) ;i++){
@@ -152,13 +152,13 @@ var klendar = function(element,daycontroller){
 
 	this.createDayCell = function(n){
 		var dc = document.createElement('td');
-		dc.innerText = n;
+		dc.textContent = n;
 		return dc;
 	}
 
 	this.createCell = function(t){
 		var c = document.createElement('td');
-		c.innerText = t;
+		c.textContent = t;
 		return c;
 	}
 

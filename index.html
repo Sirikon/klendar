@@ -31,10 +31,10 @@
 	<script>
 		window.mycalendar = new klendar(document.getElementById('mycalendar'), function(day){
 			if(day.isActual){
-				day.innerText = ('¡' + day.innerText + '!');
+				day.textContent = ('¡' + day.textContent + '!');
 			}
 			if(day.customData){
-				day.innerText = day.customData;
+				day.textContent = day.customData;
 				day.className = 'actual';
 			}
 			return day;
