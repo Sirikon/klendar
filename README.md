@@ -32,6 +32,7 @@ window.mycalendar = new klendar(document.getElementById('mycalendar'), function(
 	if(day.isActual){
 		day.textContent = 'Today!';
 	}
+	return day;
 });
 ```
 
@@ -47,6 +48,7 @@ window.mycalendar = new klendar(document.getElementById('mycalendar'), function(
 			day.textContent = "It's over 9000!";
 		}
 	}
+	return day;
 });
 window.mycalendar.set('2014-06-10', {awesomeLevel: 9300});
 ```
