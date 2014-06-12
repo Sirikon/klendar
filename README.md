@@ -44,7 +44,7 @@ You can access this properties using the day controller:
 window.mycalendar = new klendar(document.getElementById('mycalendar'), function(day){
 	if(day.awesomeLevel){
 		if(day.awesomeLevel >= 9000){
-			day.textContent = 'It's over 9000!';
+			day.textContent = "It's over 9000!";
 		}
 	}
 });
