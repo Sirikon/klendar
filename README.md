@@ -34,3 +34,19 @@ window.mycalendar = new klendar(document.getElementById('mycalendar'), function(
 	}
 });
 ```
+
+## API ##
+__klendar.set(string day, object data)__: Sets the given data of a given day
+
+You can access this properties using the day controller:
+
+```javascript
+window.mycalendar = new klendar(document.getElementById('mycalendar'), function(day){
+	if(day.awesomeLevel){
+		if(day.awesomeLevel >= 9000){
+			day.textContent = 'It's over 9000!';
+		}
+	}
+});
+window.mycalendar.set('2014-06-10', {awesomeLevel: 9300});
+```
