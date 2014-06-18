@@ -19,8 +19,8 @@ Include in your HTML, anywhere into body tag, a tag like this one:
 </div>
 ```
 
-__data-actual__: (Optional) Defines the day marked as 'actual' in the calendar. Default: Date.now()
-__(class) klendar-scale__: (Optional) A klendar element with this class auto-resizes its components to fill the container
+ * __data-actual__: (Optional) Defines the day marked as 'actual' in the calendar. Default: Date.now()
+ * __(class) klendar-scale__: (Optional) A klendar element with this class auto-resizes its components to fill the container
 
 Then, all you need to do is create a new klendar this way in Javascript:
 
@@ -35,6 +35,13 @@ window.mycalendar = new klendar(document.getElementById('mycalendar'), function(
 	return day;
 });
 ```
+
+ * __day.isActual__: Returns true if day is the actual day.
+ * __day.date__: Have info about the day's date.
+ * __day.date.year__: Day's year.
+ * __day.date.month__: Day's month.
+ * __day.date.day__: Day's month day.
+ * __day.date.weekDay__: Week day number (from 0 to 6).
 
 ## API ##
 __klendar.set(string day, object data)__: Sets the given data of a given day
