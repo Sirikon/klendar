@@ -9,6 +9,7 @@
 
 // Extend HTMLElement with the property 'klendar'
 HTMLElement.prototype.klendar = null;
+HTMLElement.prototype.date = null;
 
 var klendarStatics = {
 	monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
@@ -170,9 +171,10 @@ var klendar = function(element,daycontroller){
 					newCell[key] = thisdaydata[key];
 				}
 			}
-
-			// Run controller
-			newCell = this.dayController(newCell);
+			newCell.date = {};
+			newCell.date.year = parseInt(year);
+			newCell.date.month = parseInt(month);
+			newCell.date.day = parseInt(dayText);
 
 			// Save day's cell in days store
 			this.days[''+year+'-'+month+'-'+dayText] = newCell;
@@ -191,6 +193,12 @@ var klendar = function(element,daycontroller){
 				row = document.createElement('tr');
 				c = 0;
 			}
+			if(cellList[i].date){
+				cellList[i].date.weekDay = c;
+			}
+
+			// Run controller
+			cellList[i] = this.dayController(cellList[i]);
 			row.appendChild(cellList[i]);
 			c++;
 		}

@@ -2,7 +2,7 @@
 <head>
 	<title>klendar</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<script type="text/javascript" src="bin/klendar.min.js"></script>
+	<script type="text/javascript" src="klendar.js"></script>
 	<link rel="stylesheet" href="bin/klendar.min.css" />
 	<style>
 		body {
@@ -14,7 +14,7 @@
 			height: 200px;
 		}
 		.actual {
-			color: red;
+			color: orange;
 		}
 		.klendar-prev {
 			float: left;
@@ -28,17 +28,6 @@
 	<div id="mycalendar" data-actual="2014-06-05" class="klendar-scale">
 		
 	</div>
-	<script>
-		window.mycalendar = new klendar(document.getElementById('mycalendar'), function(day){
-			if(day.isActual){
-				day.textContent = ('¡' + day.textContent + '!');
-			}
-			if(day.customData){
-				day.textContent = day.customData;
-				day.className = 'actual';
-			}
-			return day;
-		});
-	</script>
+	<script type="text/javascript" src="index.js"></script>
 </body>
 </html>
