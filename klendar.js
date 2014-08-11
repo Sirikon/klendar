@@ -21,6 +21,7 @@ Date.prototype.increaseMonth = function(inc){
 	}
 }
 
+// i18n
 var klendari18n = {
 	'es': {
 		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
@@ -32,15 +33,19 @@ var klendari18n = {
 	}
 }
 
+// Static functions
 var klendarStatics = {
+	// Get month names localized
 	getMonthNames: function(){
 		var i18n = this.geti18n();
 		return i18n.monthNames;
 	},
+	// Get week day chars localized
 	getWeekDayChars: function(){
 		var i18n = this.geti18n();
 		return i18n.weekDayChars;
 	},
+	// Gets the i18n object
 	geti18n: function(){
 		var lang = this.getBrowserLanguage();
 		if ( klendari18n[lang] ){
@@ -51,6 +56,7 @@ var klendarStatics = {
 			return klendari18n['en'];
 		}
 	},
+	// Gets the browser's language
 	getBrowserLanguage: function(){
 		return navigator.language || navigator.userLanguage || 'en';
 	}
