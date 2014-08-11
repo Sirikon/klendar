@@ -1,0 +1,31 @@
+{
+  "name": "klendar",
+  "main": [
+    "bin/klendar.min.js",
+    "bin/klendar.min.css"
+  ],
+  "version": "0.0.1",
+  "homepage": "https://github.com/Sirikon/klendar",
+  "authors": [
+    "Carlos Fernández Llamas <sirikon2@gmail.com>"
+  ],
+  "description": "The customizable calendar widget with API",
+  "keywords": [
+    "calendar",
+    "widget",
+    "customizable",
+    "API"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "README.md",
+    "config.codekit",
+    "LICENSE"
+  ]
+}
