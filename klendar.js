@@ -21,9 +21,35 @@ Date.prototype.increaseMonth = function(inc){
 	}
 }
 
+var klendari18n = {
+	'es': {
+		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+		weekDayChars: ['L','M','X','J','V','S','D'],
+	},
+	'en': {
+		monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+		weekDayChars: ['M','T','W','T','F','S','S'],
+	}
+}
+
 var klendarStatics = {
-	monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-	weekDayChars: ['L','M','X','J','V','S','D']
+	getMonthNames: function(){
+		var i18n = this.geti18n();
+		return i18n.monthNames;
+	},
+	getWeekDayChars: function(){
+		var i18n = this.geti18n();
+		return i18n.weekDayChars;
+	},
+	geti18n: function(){
+		var lang = this.getBrowserLanguage();
+		if ( klendari18n[lang] ){
+			return klendari18n[lang];
+		}
+	},
+	getBrowserLanguage: function(){
+		return navigator.language || navigator.userLanguage || 'en';
+	}
 }
 
 // klendar class
@@ -116,7 +142,7 @@ var klendar = function(element,daycontroller){
 
 		// Create and append each weekday's fields
 		for(var i=0;i<7;i++){
-			daychars.appendChild(this.createCell(klendarStatics.weekDayChars[i]));
+			daychars.appendChild(this.createCell(klendarStatics.getWeekDayChars()[i]));
 		}
 
 		// Append elements
@@ -147,7 +173,7 @@ var klendar = function(element,daycontroller){
 		// Empty monthView
 		this.element.monthView.innerHTML = '';
 		// Put month name + year in headerView
-		this.element.headerView.textContent = klendarStatics.monthNames[d.getMonth()] + ' ' + year;
+		this.element.headerView.textContent = klendarStatics.getMonthNames()[d.getMonth()] + ' ' + year;
 
 		var cellList = [];
 		for(var i=0;i< ((dayOne.getDay()+6)%7) ;i++){
