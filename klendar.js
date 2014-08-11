@@ -45,6 +45,10 @@ var klendarStatics = {
 		var lang = this.getBrowserLanguage();
 		if ( klendari18n[lang] ){
 			return klendari18n[lang];
+		}else if( klendari18n[lang.split('-')[0]] ){
+			return klendari18n[lang.split('-')[0]];
+		}else{
+			return klendari18n['en'];
 		}
 	},
 	getBrowserLanguage: function(){
