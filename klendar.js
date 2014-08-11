@@ -18,18 +18,18 @@ var klendarStatics = {
 
 // klendar class
 var klendar = function(element,daycontroller){
+	// Create vars for storing days and days custom data
+	this.dayController = function(d){return d;};
+	this.days = {};
+	this.daysData = {};
+
 	// When klendar is instantiated, make anchor
 	this.element = element;
 
 	// Check if a daycontroller was passed as argument
-	this.dayController = function(d){return d;};
-	if(daycontroller){
-		this.dayController = daycontroller;
-	}
+	if(daycontroller){ this.dayController = daycontroller; }
 
-	// Create vars for storing days and days custom data
-	this.days = {};
-	this.daysData = {};
+	
 	
 	// CONSTRUCT
 	this.__construct__ = function(){
@@ -70,13 +70,15 @@ var klendar = function(element,daycontroller){
 		var btnLeft = document.createElement('button');
 		btnLeft.className = "klendar-prev";
 		btnLeft.textContent = '<';
-		btnLeft.addEventListener('click', function(){
+		btnLeft.addEventListener('click', function(e){
+			e.preventDefault();
 			anchor.prevMonth();
 		});
 		var btnRight = document.createElement('button');
 		btnRight.className = "klendar-next";
 		btnRight.textContent = '>';
-		btnRight.addEventListener('click', function(){
+		btnRight.addEventListener('click', function(e){
+			e.preventDefault();
 			anchor.nextMonth();
 		});
 
