@@ -11,6 +11,15 @@
 HTMLElement.prototype.klendar = null;
 HTMLElement.prototype.date = null;
 
+// Some needed functions
+Date.prototype.increaseMonth = function(inc){
+	var initMonth = this.getMonth();
+	this.setMonth(initMonth+inc)
+	if (this.getMonth() != initMonth+inc){
+		this.setMonth(initMonth+inc)
+	}
+}
+
 var klendarStatics = {
 	monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
 	weekDayChars: ['L','M','X','J','V','S','D']
@@ -19,17 +28,15 @@ var klendarStatics = {
 // klendar class
 var klendar = function(element,daycontroller){
 	// Create vars for storing days and days custom data
-	this.dayController = function(d){return d;};
 	this.days = {};
 	this.daysData = {};
+	this.dayController = function(d){return d;};
 
 	// When klendar is instantiated, make anchor
 	this.element = element;
 
 	// Check if a daycontroller was passed as argument
 	if(daycontroller){ this.dayController = daycontroller; }
-
-	
 	
 	// CONSTRUCT
 	this.__construct__ = function(){
@@ -43,14 +50,14 @@ var klendar = function(element,daycontroller){
 	// Backwards to previous month
 	this.prevMonth = function(){
 		var newmonth = this.actualMonth;
-		newmonth.setMonth(newmonth.getMonth()-1);
+		newmonth.increaseMonth(-1);
 		this.drawMonth(newmonth);
 	};
 
 	// Forwards to next month
 	this.nextMonth = function(){
 		var newmonth = this.actualMonth;
-		newmonth.setMonth(newmonth.getMonth()+1);
+		newmonth.increaseMonth(1);
 		this.drawMonth(newmonth);
 	};
 
@@ -74,6 +81,7 @@ var klendar = function(element,daycontroller){
 			e.preventDefault();
 			anchor.prevMonth();
 		});
+
 		var btnRight = document.createElement('button');
 		btnRight.className = "klendar-next";
 		btnRight.textContent = '>';
@@ -104,6 +112,7 @@ var klendar = function(element,daycontroller){
 
 		// Append the header
 		this.element.appendChild(header);
+
 		// Create and append each weekday's fields
 		for(i=0;i<7;i++){
 			daychars.appendChild(this.createCell(klendarStatics.weekDayChars[i]));
@@ -120,9 +129,10 @@ var klendar = function(element,daycontroller){
 
 	// Draws the given date's month
 	this.drawMonth = function(d){
+		console.log(d);
 		// Define year and month vars
-		var year = d.getFullYear();
-		var month = d.getMonth()+1+'';
+		var year 	= d.getFullYear();
+		var month 	= d.getMonth()+1+'';
 		this.actualMonth = d;
 		if(month.length < 2){
 			month = '0' + month;
