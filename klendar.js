@@ -6,6 +6,7 @@
  * \_| \_/_|\___|_| |_|\__,_|\__,_|_|   
  *    Carlos Fernández Llamas (@sirikon)
  */
+'use strict';
 
 // Extend HTMLElement with the property 'klendar'
 HTMLElement.prototype.klendar = null;
@@ -42,7 +43,7 @@ var klendar = function(element,daycontroller){
 	this.__construct__ = function(){
 		this.element.klendar = this;
 		this.element.className += ' klendar';
-		this.actual = new Date(this.element.dataset.actual || Date.now());
+		this.actual = new Date(this.element.getAttribute('data-actual') || Date.now());
 		this.drawStruct();
 		this.drawMonth(new Date(this.actual.getTime()));
 	};
@@ -114,7 +115,7 @@ var klendar = function(element,daycontroller){
 		this.element.appendChild(header);
 
 		// Create and append each weekday's fields
-		for(i=0;i<7;i++){
+		for(var i=0;i<7;i++){
 			daychars.appendChild(this.createCell(klendarStatics.weekDayChars[i]));
 		}
 
@@ -129,7 +130,6 @@ var klendar = function(element,daycontroller){
 
 	// Draws the given date's month
 	this.drawMonth = function(d){
-		console.log(d);
 		// Define year and month vars
 		var year 	= d.getFullYear();
 		var month 	= d.getMonth()+1+'';
@@ -150,7 +150,7 @@ var klendar = function(element,daycontroller){
 		this.element.headerView.textContent = klendarStatics.monthNames[d.getMonth()] + ' ' + year;
 
 		var cellList = [];
-		for(i=0;i< ((dayOne.getDay()+6)%7) ;i++){
+		for(var i=0;i< ((dayOne.getDay()+6)%7) ;i++){
 			// Create empty cells for offset
 			cellList.push(this.createCell(''));
 		}
