@@ -16,7 +16,7 @@ HTMLElement.prototype.date = null;
 Date.prototype.increaseMonth = function(inc){
 	var initMonth = this.getMonth();
 	this.setMonth(initMonth+inc)
-	if (this.getMonth() != initMonth+inc){
+	if ( this.getMonth() != ((initMonth+inc)+12)%12 ){
 		this.setMonth(initMonth+inc)
 	}
 }
